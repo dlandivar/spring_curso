@@ -8,7 +8,6 @@ import org.springframework.stereotype.Service;
 import bce.ec.demo.dao.UserRepository;
 import bce.ec.demo.entities.User;
 
-
 @Service
 public class UserService {
 
@@ -19,11 +18,15 @@ public class UserService {
         return userRepository.findAll();
     }
 
-public User create(User user) {
+    public User create(User user) {
         return userRepository.save(user);
     }
 
-/*    public User update(User user) {
+    public User getUserById(int userId) {
+        return userRepository.findById(userId).orElse(null);
+    }
+
+    /* public User update(User user) {
         return userRepository.save(user);
     }
 
@@ -31,9 +34,5 @@ public User create(User user) {
         userRepository.deleteById(id);
     }
 
-    public User findById(int id) {
-        return userRepository.findById(id).orElse(null);
-    }*/
-
-
+     */
 }
