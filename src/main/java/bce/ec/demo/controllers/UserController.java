@@ -3,6 +3,7 @@ package bce.ec.demo.controllers;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -15,6 +16,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import bce.ec.demo.entities.User;
 import bce.ec.demo.services.UserService;
+import ch.qos.logback.core.model.Model;
 
 @RestController
 @RequestMapping("/api/users")
@@ -34,23 +36,32 @@ public class UserController {
         return userService.create(user);
     }
 
-//@PostMapping("/add-users")
-//public Resp 
+    @PostMapping("/add-users")
+    public ResponseEntity<List<user>> createUsers(@RequestBody List<User> users) {
+        return new ResponseEntity<>(null)
+    }
+
+    @GetMapping("/user/{id}")
+    public UserDto getUser(@PathVariable("id") int id) {
+        ModelMapper modelMapper = new ModelMapper();
+        User userDb = userService.getUserById(id);
+        return modelMapper.map(userDb, UserDto.class);
+    }
 
     @GetMapping("/{userId}")
-    public User getUser(@PathVariable("userId") int userId) {
+    public User getUsers(@PathVariable("userId") int userId) {
         return userService.getUserById(userId);
     }
-    
-@PutMapping("/update/{userId}")
-    public User updateUser(@PathVariable("userId") int userId,@RequestBody User user) {
+
+    @PutMapping("/update/{userId}")
+    public User updateUser(@PathVariable("userId") int userId, @RequestBody User user) {
         user.setId(userId); // Ensure the ID is set for the update
         return userService.updateById(user);
     }
 
-  @DeleteMapping("/delete/{userId}")
+    @DeleteMapping("/delete/{userId}")
     public void deleteUser(@PathVariable("userId") int userId) {
-         userService.deleteById(userId);
+        userService.deleteById(userId);
     }
 
     //nocontent

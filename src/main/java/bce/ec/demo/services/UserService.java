@@ -22,6 +22,10 @@ public class UserService {
         return userRepository.save(user);
     }
 
+    public List<User> create(List<User> users) {
+        return userRepository.saveAll(users);
+    }
+
     public User getUserById(int userId) {
         return userRepository.findById(userId).orElse(null);
     }
