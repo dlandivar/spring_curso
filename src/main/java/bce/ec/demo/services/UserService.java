@@ -26,13 +26,13 @@ public class UserService {
         return userRepository.findById(userId).orElse(null);
     }
 
-    /* public User update(User user) {
+  public User updateById(User user) {
         return userRepository.save(user);
     }
 
-    public void delete(int id) {
-        userRepository.deleteById(id);
+    public void deleteById(int userId) {
+        userRepository.deleteById(userId);
     }
 
-     */
+    
 }

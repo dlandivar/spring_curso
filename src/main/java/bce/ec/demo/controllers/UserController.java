@@ -36,5 +36,16 @@ public class UserController {
     public User getUser(@PathVariable("userId") int userId) {
         return userService.getUserById(userId);
     }
+    
+@GetMapping("/update/{userId}")
+    public User updateUser(@PathVariable("userId") User userId) {
+        return userService.updateById(userId);
+    }
 
+  @GetMapping("/delete/{userId}")
+    public User deleteUser(@PathVariable("userId") int userId) {
+        return userService.getUserById(userId);
+    }
+
+    
 }
