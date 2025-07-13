@@ -2,6 +2,7 @@ package bce.ec.demo.controllers;
 
 import java.util.List;
 
+import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
@@ -14,15 +15,15 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import bce.ec.demo.dto.UserDto;
 import bce.ec.demo.entities.User;
 import bce.ec.demo.services.UserService;
-import ch.qos.logback.core.model.Model;
 
 @RestController
 @RequestMapping("/api/users")
 @CrossOrigin("*") // Allow all origins for demonstration purposes   
 public class UserController {
-
+        
     @Autowired
     private UserService userService;
 
@@ -37,8 +38,8 @@ public class UserController {
     }
 
     @PostMapping("/add-users")
-    public ResponseEntity<List<user>> createUsers(@RequestBody List<User> users) {
-        return new ResponseEntity<>(null)
+    public ResponseEntity<List<User>> createUsers(@RequestBody List<User> users) {
+        return new ResponseEntity<List<User>>(userService.createUsers(users), org.springframework.http.HttpStatus.CREATED );
     }
 
     @GetMapping("/user/{id}")

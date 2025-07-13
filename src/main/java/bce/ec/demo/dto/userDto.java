@@ -1,5 +1,9 @@
 package bce.ec.demo.dto;
 
-public class userDto {
+import lombok.Data;
 
+@Data
+public class UserDto {
+    private String username;
+    private String address;
 }
